@@ -14,10 +14,10 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
 
   String _value = "Hello World";
-  void onPressed()
+  void onPressed(String value )
   {
     setState(() {
-      _value = "My name is Abdullah";
+      _value = value;
     });
   }
 
@@ -32,7 +32,11 @@ class _State extends State<MyApp> {
         child: new Column(
           children: <Widget>[
             new Text(_value),
-            new RaisedButton(onPressed: onPressed,child: new Text("Click me"),)
+            new RaisedButton(onPressed: () =>  onPressed("Hello Abdullah"),child: new Text("Click me"),),
+            new FlatButton(onPressed: () =>  onPressed("Hello Abdullah"),child: new Text("Click me"),),
+            new IconButton(icon:new Icon(Icons.add) ,onPressed: () =>  onPressed("Hello Abdullah"),)
+
+
           ],
         ),
       ),
