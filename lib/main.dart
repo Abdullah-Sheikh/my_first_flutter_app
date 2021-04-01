@@ -13,9 +13,35 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
 
+  List<BottomNavigationBarItem> _items;
+
   String _value = "Hello World";
+  String Value = '';
   bool _value1 = false ;
   bool _value2 = false;
+  double value3 = 0;
+
+  int index =0;
+
+  @override
+  void initState() {
+
+    _items = new List();
+    _items.add(new BottomNavigationBarItem(icon: new Icon(Icons.people),title:new Text('People')));
+    _items.add(new BottomNavigationBarItem(icon: new Icon(Icons.people), title:new Text('People')));
+    _items.add(new BottomNavigationBarItem(icon: new Icon(Icons.people), title:new Text('People')));
+
+
+  }
+
+
+
+  void setvalue (double value)
+  {
+    setState(() {
+      value3 = value;
+    });
+  }
 
   void _onchanged1(bool value)
   {
@@ -59,14 +85,20 @@ class _State extends State<MyApp> {
         padding: new EdgeInsets.all(32.0),
         child: new Column(
           children: <Widget>[
-            new Text(_value),
+            new Text('Value : ${Value}')  ,
 
+           new Slider(value: value3, onChanged: setvalue)
+
+           /*
+           new Text('Value : ${(value3 *100).round()}')  ,
            new Switch(value: _value1, onChanged: _onchanged1),
            new SwitchListTile(
                value: _value2,
                onChanged: _onchanged2,
                title: new Text("Hello World ", style: new TextStyle(fontWeight: FontWeight.bold),),
            )
+
+            */
 
 
            /*
@@ -90,6 +122,19 @@ class _State extends State<MyApp> {
 
           ],
         ),
+      ),
+      bottomNavigationBar: new BottomNavigationBar(items: _items,
+        fixedColor: Colors.blue,
+        currentIndex: 0,
+        onTap: (int item)
+        {
+          setState(() {
+            index = item ;
+            Value="Current value is: ${index.toString()}";
+
+
+          });
+        },
       ),
     );
   }
