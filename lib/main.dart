@@ -14,6 +14,34 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
 
   String _value = "Hello World";
+  bool _value1 = false ;
+  bool _value2 = false;
+
+  void _onchanged1(bool value)
+  {
+    setState(() {
+      _value1 = value;
+    });
+  }
+
+  void _onchanged2(bool value)
+  {
+    setState(() {
+      _value2 = value;
+    });
+  }
+
+
+  void _onChange(String value)
+  {
+    setState(() => _value = 'Change : ${value}');
+  }
+
+  void _onSubmit(String value)
+  {
+    setState(() => _value = 'Submit : ${value}');
+  }
+
   void onPressed(String value )
   {
     setState(() {
@@ -32,10 +60,33 @@ class _State extends State<MyApp> {
         child: new Column(
           children: <Widget>[
             new Text(_value),
+
+           new Switch(value: _value1, onChanged: _onchanged1),
+           new SwitchListTile(
+               value: _value2,
+               onChanged: _onchanged2,
+               title: new Text("Hello World ", style: new TextStyle(fontWeight: FontWeight.bold),),
+           )
+
+
+           /*
+           new TextField(
+             decoration: new InputDecoration(
+               labelText: 'hello',
+               hintText: 'Hello',
+               icon: new Icon(Icons.people)
+             ),
+             autocorrect: true,
+             autofocus: true,
+             keyboardType: TextInputType.text,
+             onChanged: _onChange,
+             onSubmitted: _onSubmit,
+           )
+           new Text(_value),
             new RaisedButton(onPressed: () =>  onPressed("Hello Abdullah"),child: new Text("Click me"),),
             new FlatButton(onPressed: () =>  onPressed("Hello Abdullah"),child: new Text("Click me"),),
             new IconButton(icon:new Icon(Icons.add) ,onPressed: () =>  onPressed("Hello Abdullah"),)
-
+            */
 
           ],
         ),
